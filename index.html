@@ -21,46 +21,21 @@
         <header>
             <h1>charleylife.com</h1>
             <p>一个程序猿拥有此生此世是不够的，他还应该拥有一个博客。</p>
-            <p><a href="http://weibo.com/charleyTop">weibo</a> 假装刷微博</p>
-            <p><a href="https://www.douban.com/people/charleylife">douban</a> 阿诗爱笨蛋</p>
-            <p class="view"><a href="https://github.com/ai4581532">GitHub</a> ai4581532.github.io</p>
+            <p class="view">weibo <a href="http://weibo.com/charleyTop">假装刷微博</a> </p>
+            <p class="view">douban <a href="https://www.douban.com/people/charleylife">阿诗爱笨蛋</a> </p>
+            <p class="view">GitHub <a href="https://github.com/ai4581532">ai4581532.github.io</a> </p>
 
         </header>
         <section>
-            <h3>
-                <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true">
-                  <span aria-hidden="true" class="octicon octicon-link"></span></a>碎碎念一</h3>
-            <p>
-                年前用nginx部署了公司的新官网，后面boss把网站加了https,但是官网的博客需要请求数据服务接口，数据服务采用的http。
-                那么问题来了，https站点里使用ajax请求http在谷歌浏览器里会报错，所以在nginx里加了根据url转发请求的配置。
-            </p>
-
-            <h3>
-              <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true">
-                <span aria-hidden="true" class="octicon octicon-link"></span></a>碎碎念二</h3>
-
-            <p>
-                昨天了解到postgreSQL可是使用dblink进行跨库查询
-            </p>
-
-            <h3>
-              <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true">
-                <span aria-hidden="true" class="octicon octicon-link"></span></a>碎碎念三</h3>
-
-            <p>今天李小阳打电话过来说我在干嘛，我说在学习jenkins,他说学会了写篇guide给他这周末，我说尽量，摊手.jpg...TODO 把个人博客搭建起来，
-              至少把碎碎念数据放数据库中</p>
-
+            <div ng-repeat="pa in passage">
               <h3>
-                <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true">
-                  <span aria-hidden="true" class="octicon octicon-link"></span></a>碎碎念四</h3>
-
-              <p>作为一个程序员，遇到需要注册帐号填写密码的地方就好担忧，自己很多帐号和密码都一样，万一遇到了一个黑网站怎么办，
-                万一这个渣渣网站帐号密码不加密然后被盗数据了肿么办，万一开发这个程序的人是个坏程序员偷用户数据怎么办，万一...操碎了心</p>
-                <h3>
-                  <a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true">
-                    <span aria-hidden="true" class="octicon octicon-link"></span></a>碎碎念五</h3>
-
-                <p>今天在看别人的个人博客的时候想到，可以在自己的博客上弄个博客推荐板块。收集自己觉得不错的博客，写个概要的介绍说明，然后放上链接，冰果！</p>
+                  <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true">
+                    <span aria-hidden="true" class="octicon octicon-link"></span></a> {{pa.title}}
+              </h3>
+              <p>
+                  {{pa.content}}
+              </p>
+            </div>
 
         </section>
         <footer>

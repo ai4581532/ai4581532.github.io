@@ -1,6 +1,7 @@
 app.controller('mainCtrl',function($scope,$http){
     function successCallback(response){
-        console.log(response);
+        //console.log(response);
+        $scope.passage=response.data.passage;
     }
 
     function errorCallback(response){
