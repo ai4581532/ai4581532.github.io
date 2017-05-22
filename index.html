@@ -21,9 +21,20 @@
         <header>
             <h1>charleylife.com</h1>
             <p>一个程序猿拥有此生此世是不够的，他还应该拥有一个博客。</p>
-            <p class="view">weibo <a href="http://weibo.com/charleyTop">假装刷微博</a> </p>
-            <p class="view">douban <a href="https://www.douban.com/people/charleylife">阿诗爱笨蛋</a> </p>
-            <p class="view">GitHub <a href="https://github.com/ai4581532">ai4581532.github.io</a> </p>
+
+            <p class="view">
+              <ul>
+                  <li><a href="#">blog</a></li>
+                  <li><a href="#">star</a></li>
+                  <a href="#">bout</a>
+              </ul>
+            </p>
+            <p class="view">mail <a href="mailto:charley@charley.top">charley@charley.top</a> </p>
+            <p class="view">github <a href="https://github.com/ai4581532">ai4581532.github.io</a> </p>
+            <p class="view" ng-if="moreLink">微博 <a href="http://weibo.com/charleyTop">假装刷微博</a> </p>
+            <p class="view" ng-if="moreLink">豆瓣 <a href="https://www.douban.com/people/charleylife">阿诗爱笨蛋</a> </p>
+
+            <p class="view" ng-show="!moreLink"><a href="#" ng-click="moreLink=true">更多</a> </p>
 
         </header>
         <section>
