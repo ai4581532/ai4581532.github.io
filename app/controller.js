@@ -11,7 +11,9 @@ app.controller('mainCtrl',function($scope,$http,$interval){
           console.log(response);
       }
 
-      $http.get('/ai4581532.github.io/content/passage.json').then(successCallback, errorCallback);
+      //var url = '/ai4581532.github.io/content/passage.json';
+      var url = '/content/passage.json';
+      $http.get(url).then(successCallback, errorCallback);
     }
 
     $scope.getPassage();
