@@ -14,6 +14,21 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+
+    <style>
+
+        .pa {
+          transition: 2s;
+          height: 100%;
+          width: 100%;
+          position: relative;
+          top: 0;
+          left: 0;
+        }
+
+    </style>
+
 </head>
 
 <body ng-app="charleylife">
@@ -36,16 +51,67 @@
 
             <p class="view" ng-show="!moreLink"><a href="#" ng-click="moreLink=true">更多</a> </p>
 
+            <div ng-repeat="pa in passage">
+              <div  ng-show="$index==showIndex" class="pa">
+                <h3>
+                    <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true">
+                      <span aria-hidden="true" class="octicon octicon-link"></span></a> {{pa.title}}
+                </h3>
+                <p>
+                    {{pa.content}}
+                </p>
+              </div>
+            </div>
+
         </header>
         <section>
-            <div ng-repeat="pa in passage">
+            <div >
               <h3>
                   <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true">
-                    <span aria-hidden="true" class="octicon octicon-link"></span></a> {{pa.title}}
+                    <span aria-hidden="true" class="octicon octicon-link"></span></a> elasticsearch的索引分片和副本
               </h3>
-              <p>
-                  {{pa.content}}
-              </p>
+              <pre>
+  ### 分片与副本
+
+  关于索引分片应该知道以下知识点：
+
+  1. 索引数据是分片存储的，每个索引至少有一个数据主分片
+
+  2. 可以给数据主分片设置副本，当主分片丢失时，副本可以转换为主分片
+
+  3. 主分片和主分片对应的副本es会优先放在不同的节点上，以保证数据的可用性和集群的健壮性
+
+  4. 可以通过api强制设置分片的存储节点
+
+  5. 搜索时是每个分片单独搜索，单独算分最后汇总排序返回最终搜索结果，所以索引分片数过多将影响搜索的性能
+
+  6. 单个分片数据量过大也会影响搜索的性能，类比表数据太多查询性能也会降低
+
+  7. 主分片与副本都能处理查询请求, 它们的唯一区别在于只有主分片才能处理索引请求
+
+  8. 索引一旦建立后，主分片数将不可修改，副本数据可以通过api动态设置
+
+  所以，woy我们应合理设置分片数和副本数，它将直接影响搜索性能，索引的性能，以及搜索准确率。
+
+  ### 设置分片副本数
+
+  建立索引时可以指定索引的主分片和副本数，如下，设置了索引twitter的主分片数为3，每个主分片的副本数为2。
+
+  ```bash
+  PUT twitter
+  {
+      "settings" : {
+          "index" : {
+              "number_of_shards" : 3,
+              "number_of_replicas" : 2
+          }
+      }
+  }
+  ```
+  建索引时如果不指定setting，则number_of_shards=5，number_of_replicas=1，即5个主分片，每个主分片1份副本。
+
+
+              </pre>
             </div>
 
         </section>
@@ -56,15 +122,19 @@
                 <span><a href="http://sentsin.com/">闲心博客</a></span>
                 <span><a href="http://www.liaoxuefeng.com/">廖学峰的官方网站</a></span>
             </div>
-            <p><small>Hosted on GitHub Pages</small></p>
+            <p><small>Power by charley</small></p>
         </footer>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js"></script>
     <script src="javascripts/scale.fix.js"></script>
     <script src="angular/angular.js"></script>
+    <script src="angular/angular-animate.js"></script>
 
     <script src="app/app.js"></script>
     <script src="app/controller.js"></script>
+
+
 
 </body>
 
